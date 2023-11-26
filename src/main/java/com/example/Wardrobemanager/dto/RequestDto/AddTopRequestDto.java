@@ -13,6 +13,7 @@ import lombok.experimental.FieldDefaults;
 @Getter
 @Setter
 public class AddTopRequestDto {
+    String name;
     Color color;
     Color_type color_type;
     Gender gender;

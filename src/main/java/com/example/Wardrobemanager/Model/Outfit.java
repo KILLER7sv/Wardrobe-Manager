@@ -19,6 +19,8 @@ public class Outfit {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     int id;
 
+    String name;
+
     @Enumerated(value = EnumType.STRING)
     Genre genre;
 

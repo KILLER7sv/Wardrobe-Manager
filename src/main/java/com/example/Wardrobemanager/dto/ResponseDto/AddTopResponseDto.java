@@ -10,6 +10,7 @@ import lombok.experimental.FieldDefaults;
 @Getter
 @Setter
 public class AddTopResponseDto {
+    String name;
     Genre genre;
     String message;
 }

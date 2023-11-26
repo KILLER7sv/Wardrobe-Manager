@@ -13,6 +13,7 @@ public class TopService {
     TopRepository topRepository;
     public AddTopResponseDto addTop(AddTopRequestDto addTopRequestDto) {
         Top top = new Top();
+        top.setName(addTopRequestDto.getName());
         top.setGender(addTopRequestDto.getGender());
         top.setColor(addTopRequestDto.getColor());
         top.setColor_type(addTopRequestDto.getColor_type());
@@ -21,8 +22,9 @@ public class TopService {
         Top savedTop =topRepository.save(top);
 
         AddTopResponseDto addTopResponseDto = new AddTopResponseDto();
+        addTopResponseDto.setName(savedTop.getName());
         addTopResponseDto.setGenre(savedTop.getGenre());
-        addTopResponseDto.setMessage("Congrats! Your Top is Uploaded");
+        addTopResponseDto.setMessage("Congrats! Your " +savedTop.getName()+ " is Uploaded");
 
         return addTopResponseDto;
     }

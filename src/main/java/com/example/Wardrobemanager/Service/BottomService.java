@@ -14,6 +14,7 @@ public class BottomService {
 
     public AddBottomResponseDto addBottom(AddBottomRequestDto addBottomRequestDto) {
         Bottom bottom = new Bottom();
+        bottom.setName(addBottomRequestDto.getName());
         bottom.setColor(addBottomRequestDto.getColor());
         bottom.setGender(addBottomRequestDto.getGender());
         bottom.setGenre(addBottomRequestDto.getGenre());
@@ -22,8 +23,9 @@ public class BottomService {
         Bottom savedBottom = bottomRepository.save(bottom);
 
         AddBottomResponseDto addBottomResponseDto = new AddBottomResponseDto();
+        addBottomResponseDto.setName(addBottomRequestDto.getName());
         addBottomResponseDto.setGenre(savedBottom.getGenre());
-        addBottomResponseDto.setMessage("Congrats! Your Bottom is Uploaded");
+        addBottomResponseDto.setMessage("Congrats! Your "+savedBottom.getName() + " is Uploaded");
 
         return addBottomResponseDto;
     }
