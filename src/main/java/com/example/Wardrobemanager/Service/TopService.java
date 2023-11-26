@@ -24,7 +24,7 @@ public class TopService {
         AddTopResponseDto addTopResponseDto = new AddTopResponseDto();
         addTopResponseDto.setName(savedTop.getName());
         addTopResponseDto.setGenre(savedTop.getGenre());
-        addTopResponseDto.setMessage("Congrats! Your " +savedTop.getName()+ " is Uploaded");
+        addTopResponseDto.setMessage("Congrats! Your " +savedTop.getName()+ " is Added");
 
         return addTopResponseDto;
     }

@@ -25,7 +25,7 @@ public class BottomService {
         AddBottomResponseDto addBottomResponseDto = new AddBottomResponseDto();
         addBottomResponseDto.setName(addBottomRequestDto.getName());
         addBottomResponseDto.setGenre(savedBottom.getGenre());
-        addBottomResponseDto.setMessage("Congrats! Your "+savedBottom.getName() + " is Uploaded");
+        addBottomResponseDto.setMessage("Congrats! Your "+savedBottom.getName() + " is Added");
 
         return addBottomResponseDto;
     }
