@@ -1,6 +1,6 @@
 package com.example.Wardrobemanager.Controller;
 
-import com.example.Wardrobemanager.Service.TopService;
+import com.example.Wardrobemanager.Service.UpperWearService;
 import com.example.Wardrobemanager.dto.RequestDto.AddTopRequestDto;
 import com.example.Wardrobemanager.dto.ResponseDto.AddTopResponseDto;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,14 +13,14 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping("/top")
-public class TopController {
+public class UpperWearController {
     @Autowired
-    TopService topService;
+    UpperWearService upperWearService;
 
     @PostMapping("/add")
-    public ResponseEntity addTop(@RequestBody AddTopRequestDto addTopRequestDto){
+    public ResponseEntity addUpperWear(@RequestBody AddTopRequestDto addTopRequestDto){
         try{
-            AddTopResponseDto topResponse = topService.addTop(addTopRequestDto);
+            AddTopResponseDto topResponse = upperWearService.addTop(addTopRequestDto);
             return new ResponseEntity(topResponse, HttpStatus.CREATED);
         }
         catch (Exception e){
