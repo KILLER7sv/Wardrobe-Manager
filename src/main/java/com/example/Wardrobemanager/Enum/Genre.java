@@ -4,5 +4,6 @@ public enum Genre {
     CASUAL,
     FORMAL,
     SPORTS,
-    OCCASIONAL
+    OCCASIONAL,
+    ETHNIC
 }

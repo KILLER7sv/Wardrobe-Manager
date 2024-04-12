@@ -32,4 +32,9 @@ public class Outfit {
 
     @Enumerated(value = EnumType.STRING)
     Color_type color_type;
+
+    int bottomId;
+    int upperId;
+    int shoesId;
+
 }

@@ -7,6 +7,8 @@ import com.example.Wardrobemanager.dto.ResponseDto.AddTopResponseDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class UpperWearService {
     @Autowired
@@ -27,5 +29,13 @@ public class UpperWearService {
         addTopResponseDto.setMessage("Congrats! Your " + savedUpperWear.getName()+ " is Added");
 
         return addTopResponseDto;
+    }
+
+    public List<UpperWear> getByColor(String color) {
+        return upperWearRepository.getTopsByColor(color);
+    }
+
+    public List<UpperWear> getTopsByGenre(String genre) {
+        return upperWearRepository.getTopsByGenre(genre);
     }
 }

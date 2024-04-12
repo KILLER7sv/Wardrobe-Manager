@@ -1,11 +1,14 @@
 package com.example.Wardrobemanager.Service;
 
 import com.example.Wardrobemanager.Model.Shoes;
+import com.example.Wardrobemanager.Model.UpperWear;
 import com.example.Wardrobemanager.Repository.ShoesRepository;
 import com.example.Wardrobemanager.dto.RequestDto.AddShoesRequestDto;
 import com.example.Wardrobemanager.dto.ResponseDto.AddShoesResponseDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 @Service
 public class ShoesService {
@@ -28,5 +31,13 @@ public class ShoesService {
         addShoesResponseDto.setMessage("Congrats! Your "+savedShoes.getName() + " is Added");
 
         return addShoesResponseDto;
+    }
+
+    public List<Shoes> getByColor(String color) {
+        return shoesRepository.getShoesByColor(color);
+    }
+
+    public List<Shoes> getShoesByGenre(String genre) {
+        return shoesRepository.getShoesByGenre(genre);
     }
 }

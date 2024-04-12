@@ -1,17 +1,15 @@
 package com.example.Wardrobemanager.Controller;
 
+import com.example.Wardrobemanager.Model.Bottom;
 import com.example.Wardrobemanager.Service.BottomService;
 import com.example.Wardrobemanager.dto.RequestDto.AddBottomRequestDto;
-import com.example.Wardrobemanager.dto.RequestDto.AddTopRequestDto;
 import com.example.Wardrobemanager.dto.ResponseDto.AddBottomResponseDto;
-import com.example.Wardrobemanager.dto.ResponseDto.AddTopResponseDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 @RequestMapping("/bottom")
@@ -29,5 +27,28 @@ public class BottomController {
         catch (Exception e){
             return new ResponseEntity(e.getMessage(), HttpStatus.BAD_REQUEST);
         }
+    }
+
+    @GetMapping("/getByColor")
+    public List<Bottom> getByColor(@RequestParam("color") String color){
+        List<Bottom> bottoms = bottomService.getByColor(color);
+        return bottoms;
+    }
+    @GetMapping("/getByGenre")
+    public List<Bottom> getByGenre(@RequestParam("Genre") String genre){
+        List<Bottom> bottoms = bottomService.getByGenre(genre);
+        return bottoms;
+    }
+
+    @DeleteMapping("/deleteByColor")
+    public String deleteByColor(@RequestParam("color") String color) {
+        int deletedCount = bottomService.deleteByColor(color);
+        return "Deleted " + deletedCount + " items with color: " + color;
+    }
+
+    @DeleteMapping("/deleteByGenre")
+    public String deleteByGenre(@RequestParam("genre") String genre) {
+        int deletedCount = bottomService.deleteByGenre(genre);
+        return "Deleted " + deletedCount + " items with genre: " + genre;
     }
 }
