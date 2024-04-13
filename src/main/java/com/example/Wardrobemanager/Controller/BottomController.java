@@ -29,8 +29,8 @@ public class BottomController {
     }
 
     @GetMapping("/getByColor")
-    public ResponseEntity<Object> getByColor(@RequestParam("color") String color){
-        List<Bottom> bottoms = bottomService.getByColor(color);
+    public ResponseEntity<Object> getByColor(@RequestParam("color") String color, @RequestParam("userId") String userId){
+        List<Bottom> bottoms = bottomService.getByColor(color, userId);
         if (bottoms.isEmpty()) {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body("No bottoms found with color: " + color);
         }
@@ -38,8 +38,8 @@ public class BottomController {
     }
 
     @GetMapping("/getByGenre")
-    public ResponseEntity<Object> getByGenre(@RequestParam("genre") String genre){
-        List<Bottom> bottoms = bottomService.getByGenre(genre);
+    public ResponseEntity<Object> getByGenre(@RequestParam("genre") String genre, @RequestParam("userId") String userId){
+        List<Bottom> bottoms = bottomService.getByGenre(genre, userId);
         if (bottoms.isEmpty()) {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body("No bottoms found with genre: " + genre);
         }

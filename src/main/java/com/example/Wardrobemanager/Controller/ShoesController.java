@@ -32,14 +32,14 @@ public class ShoesController {
     }
 
     @GetMapping("/getByColor")
-    public ResponseEntity<List<Shoes>> getByColor(@RequestParam("color") String color){
-        List<Shoes> shoes = shoesService.getByColor(color);
+    public ResponseEntity<List<Shoes>> getByColor(@RequestParam("color") String color, @RequestParam("userId") String userId){
+        List<Shoes> shoes = shoesService.getByColor(color, userId);
         return new ResponseEntity<>(shoes, HttpStatus.OK);
     }
 
     @GetMapping("/getByGenre")
-    public ResponseEntity<List<Shoes>> getByGenre(@RequestParam("Genre") String genre){
-        List<Shoes> shoes = shoesService.getShoesByGenre(genre);
+    public ResponseEntity<List<Shoes>> getByGenre(@RequestParam("Genre") String genre, @RequestParam("userId") String userId){
+        List<Shoes> shoes = shoesService.getShoesByGenre(genre, userId);
         return new ResponseEntity<>(shoes, HttpStatus.OK);
     }
 }

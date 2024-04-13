@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Objects;
 
 @Service
 public class ShoesService {
@@ -21,6 +22,7 @@ public class ShoesService {
         shoes.setGenre(addShoesRequestDto.getGenre());
         shoes.setGender(addShoesRequestDto.getGender());
         shoes.setColor_type(addShoesRequestDto.getColor_type());
+        shoes.setUserId(addShoesRequestDto.getUserId());
 
         Shoes savedShoes = shoesRepository.save(shoes);
 
@@ -32,11 +34,15 @@ public class ShoesService {
         return addShoesResponseDto;
     }
 
-    public List<Shoes> getByColor(String color) {
-        return shoesRepository.findByColor(color);
+    public List<Shoes> getByColor(String color, String userId) {
+        List<Shoes> shoes = shoesRepository.findByColor(color);
+        List<Shoes> result = shoes.stream().filter(e -> Objects.equals(e.getUserId(), userId)).toList();
+        return result;
     }
 
-    public List<Shoes> getShoesByGenre(String genre) {
-        return shoesRepository.findByGenre(genre);
+    public List<Shoes> getShoesByGenre(String genre, String userId) {
+        List<Shoes> shoes = shoesRepository.findByGenre(genre);
+        List<Shoes> result = shoes.stream().filter(e -> Objects.equals(e.getUserId(), userId)).toList();
+        return result;
     }
 }

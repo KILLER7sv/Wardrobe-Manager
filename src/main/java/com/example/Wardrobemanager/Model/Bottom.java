@@ -19,12 +19,10 @@ public class Bottom {
     String id;
 
     String name;
-
     Genre genre;
-
     Color color;
-
     Gender gender;
-
     Color_type color_type;
+    String userId;
+    String photoUrl;
 }

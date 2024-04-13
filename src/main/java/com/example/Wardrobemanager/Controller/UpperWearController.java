@@ -30,12 +30,12 @@ public class UpperWearController {
     }
 
     @GetMapping("/getByColor")
-    public List<UpperWear> getByColor(@RequestParam("color") String color) {
-        return upperWearService.getByColor(color);
+    public List<UpperWear> getByColor(@RequestParam("color") String color, @RequestParam("userId") String userId) {
+        return upperWearService.getByColor(color, userId);
     }
 
     @GetMapping("/getByGenre")
-    public List<UpperWear> getByGenre(@RequestParam("Genre") String genre) {
-        return upperWearService.getTopsByGenre(genre);
+    public List<UpperWear> getByGenre(@RequestParam("Genre") String genre, @RequestParam("userId") String userId) {
+        return upperWearService.getTopsByGenre(genre, userId);
     }
 }

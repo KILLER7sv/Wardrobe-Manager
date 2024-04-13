@@ -13,6 +13,7 @@ import com.example.Wardrobemanager.Repository.BottomRepository;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 @Service
 public class BottomService {
@@ -26,6 +27,7 @@ public class BottomService {
         bottom.setGender(addBottomRequestDto.getGender());
         bottom.setGenre(addBottomRequestDto.getGenre());
         bottom.setColor_type(addBottomRequestDto.getColor_type());
+        bottom.setUserId(addBottomRequestDto.getUserId());
 
         Bottom savedBottom = bottomRepository.save(bottom);
 
@@ -37,14 +39,16 @@ public class BottomService {
         return addBottomResponseDto;
     }
 
-    public List<Bottom> getByColor(String color) {
+    public List<Bottom> getByColor(String color, String userId) {
         List<Bottom> bottoms = bottomRepository.findByColor(color);
-        return bottoms;
+        List<Bottom> result = bottoms.stream().filter(e -> Objects.equals(e.getUserId(), userId)).toList();
+        return result;
     }
 
-    public List<Bottom> getByGenre(String genre) {
+    public List<Bottom> getByGenre(String genre, String userId) {
         List<Bottom> bottoms = bottomRepository.findByGenre(genre);
-        return bottoms;
+        List<Bottom> result = bottoms.stream().filter(e -> Objects.equals(e.getUserId(), userId)).toList();
+        return result;
     }
 
     @Transactional

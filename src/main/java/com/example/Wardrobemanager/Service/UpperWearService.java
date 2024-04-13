@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Objects;
 
 @Service
 public class UpperWearService {
@@ -21,6 +22,7 @@ public class UpperWearService {
         upperWear.setColor(addTopRequestDto.getColor());
         upperWear.setColor_type(addTopRequestDto.getColor_type());
         upperWear.setGenre(addTopRequestDto.getGenre());
+        upperWear.setUserId(addTopRequestDto.getUserId());
 
         UpperWear savedUpperWear = upperWearRepository.save(upperWear);
 
@@ -32,11 +34,15 @@ public class UpperWearService {
         return addTopResponseDto;
     }
 
-    public List<UpperWear> getByColor(String color) {
-        return upperWearRepository.findByColor(color);
+    public List<UpperWear> getByColor(String color, String userId) {
+        List<UpperWear> tops = upperWearRepository.findByColor(color);
+        List<UpperWear> result = tops.stream().filter(e -> Objects.equals(e.getUserId(), userId)).toList();
+        return result;
     }
 
-    public List<UpperWear> getTopsByGenre(String genre) {
-        return upperWearRepository.findByGenre(genre);
+    public List<UpperWear> getTopsByGenre(String genre, String userId) {
+        List<UpperWear> tops = upperWearRepository.findByGenre(genre);
+        List<UpperWear> result = tops.stream().filter(e -> Objects.equals(e.getUserId(), userId)).toList();
+        return result;
     }
 }

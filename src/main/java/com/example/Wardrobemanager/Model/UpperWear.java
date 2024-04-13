@@ -24,6 +24,6 @@ public class UpperWear {
     Color color;
     Gender gender;
     Color_type color_type;
-
-    // You can keep @Getter and @Setter annotations here if you prefer
+    String userId;
+    String photoUrl;
 }

@@ -24,4 +24,6 @@ public class Shoes {
     Color color;
     Gender gender;
     Color_type color_type;
+    String userId;
+    String photoUrl;
 }

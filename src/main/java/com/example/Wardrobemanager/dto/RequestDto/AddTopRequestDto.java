@@ -18,4 +18,5 @@ public class AddTopRequestDto {
     Color_type color_type;
     Gender gender;
     Genre genre;
+    String userId;
 }
