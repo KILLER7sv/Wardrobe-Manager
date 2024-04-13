@@ -19,36 +19,42 @@ public class BottomController {
     BottomService bottomService;
 
     @PostMapping("/add")
-    public ResponseEntity addTop(@RequestBody AddBottomRequestDto addBottomRequestDto){
-        try{
+    public ResponseEntity<Object> addBottom(@RequestBody AddBottomRequestDto addBottomRequestDto){
+        try {
             AddBottomResponseDto bottomResponse = bottomService.addBottom(addBottomRequestDto);
-            return new ResponseEntity(bottomResponse, HttpStatus.CREATED);
-        }
-        catch (Exception e){
-            return new ResponseEntity(e.getMessage(), HttpStatus.BAD_REQUEST);
+            return ResponseEntity.status(HttpStatus.CREATED).body(bottomResponse);
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e.getMessage());
         }
     }
 
     @GetMapping("/getByColor")
-    public List<Bottom> getByColor(@RequestParam("color") String color){
+    public ResponseEntity<Object> getByColor(@RequestParam("color") String color){
         List<Bottom> bottoms = bottomService.getByColor(color);
-        return bottoms;
+        if (bottoms.isEmpty()) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("No bottoms found with color: " + color);
+        }
+        return ResponseEntity.ok(bottoms);
     }
+
     @GetMapping("/getByGenre")
-    public List<Bottom> getByGenre(@RequestParam("Genre") String genre){
+    public ResponseEntity<Object> getByGenre(@RequestParam("genre") String genre){
         List<Bottom> bottoms = bottomService.getByGenre(genre);
-        return bottoms;
+        if (bottoms.isEmpty()) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("No bottoms found with genre: " + genre);
+        }
+        return ResponseEntity.ok(bottoms);
     }
 
     @DeleteMapping("/deleteByColor")
-    public String deleteByColor(@RequestParam("color") String color) {
+    public ResponseEntity<Object> deleteByColor(@RequestParam("color") String color) {
         int deletedCount = bottomService.deleteByColor(color);
-        return "Deleted " + deletedCount + " items with color: " + color;
+        return ResponseEntity.ok("Deleted " + deletedCount + " items with color: " + color);
     }
 
     @DeleteMapping("/deleteByGenre")
-    public String deleteByGenre(@RequestParam("genre") String genre) {
+    public ResponseEntity<Object> deleteByGenre(@RequestParam("genre") String genre) {
         int deletedCount = bottomService.deleteByGenre(genre);
-        return "Deleted " + deletedCount + " items with genre: " + genre;
+        return ResponseEntity.ok("Deleted " + deletedCount + " items with genre: " + genre);
     }
 }

@@ -1,36 +1,29 @@
 package com.example.Wardrobemanager.Model;
 
-
 import com.example.Wardrobemanager.Enum.Color;
 import com.example.Wardrobemanager.Enum.Color_type;
 import com.example.Wardrobemanager.Enum.Gender;
 import com.example.Wardrobemanager.Enum.Genre;
-import jakarta.persistence.*;
 import lombok.*;
-import lombok.experimental.FieldDefaults;
+import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.Document;
 
-@Entity
-@FieldDefaults(level = AccessLevel.PRIVATE)
+@Data
 @NoArgsConstructor
 @AllArgsConstructor
+@Document(collection = "upperwear")
 @Getter
 @Setter
 public class UpperWear {
+
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    int id;
+    String id;
 
     String name;
-
-    @Enumerated(value = EnumType.STRING)
     Genre genre;
-
-    @Enumerated(value = EnumType.STRING)
     Color color;
-
-    @Enumerated(value = EnumType.STRING)
     Gender gender;
-
-    @Enumerated(value = EnumType.STRING)
     Color_type color_type;
+
+    // You can keep @Getter and @Setter annotations here if you prefer
 }

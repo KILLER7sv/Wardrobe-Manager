@@ -9,6 +9,7 @@ import com.example.Wardrobemanager.dto.ResponseDto.AddBottomResponseDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import com.example.Wardrobemanager.Repository.BottomRepository;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -37,36 +38,22 @@ public class BottomService {
     }
 
     public List<Bottom> getByColor(String color) {
-        List<Bottom> bottoms = bottomRepository.getColor(color);
-        // directly return this, contains all object
-
-//        to return a specific entity
-//        List<String> ans = new ArrayList<>();
-//        for(Bottom b : bottoms){
-//            ans.add(b.getName());
-//        }
-
+        List<Bottom> bottoms = bottomRepository.findByColor(color);
         return bottoms;
     }
 
     public List<Bottom> getByGenre(String genre) {
-        List<Bottom> bottoms = bottomRepository.getGenre(genre);
-//        List<String> ans = new ArrayList<>();
-//        for(Bottom b : bottoms){
-//            ans.add(b.getName());
-//        }
+        List<Bottom> bottoms = bottomRepository.findByGenre(genre);
         return bottoms;
     }
 
     @Transactional
     public int deleteByColor(String color) {
-        Color colorEnum = Color.valueOf(color.toUpperCase());
-        return bottomRepository.deleteByColor(colorEnum);
+        return bottomRepository.deleteByColor(color);
     }
 
     @Transactional
     public int deleteByGenre(String genre) {
-        Genre genreEnum = Genre.valueOf(genre.toUpperCase());
-        return bottomRepository.deleteByGenre(genreEnum);
+        return bottomRepository.deleteByGenre(genre);
     }
 }

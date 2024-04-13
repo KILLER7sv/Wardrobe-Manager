@@ -13,6 +13,7 @@ import java.util.List;
 public class UpperWearService {
     @Autowired
     UpperWearRepository upperWearRepository;
+
     public AddTopResponseDto addTop(AddTopRequestDto addTopRequestDto) {
         UpperWear upperWear = new UpperWear();
         upperWear.setName(addTopRequestDto.getName());
@@ -26,16 +27,16 @@ public class UpperWearService {
         AddTopResponseDto addTopResponseDto = new AddTopResponseDto();
         addTopResponseDto.setName(savedUpperWear.getName());
         addTopResponseDto.setGenre(savedUpperWear.getGenre());
-        addTopResponseDto.setMessage("Congrats! Your " + savedUpperWear.getName()+ " is Added");
+        addTopResponseDto.setMessage("Congrats! Your " + savedUpperWear.getName() + " is Added");
 
         return addTopResponseDto;
     }
 
     public List<UpperWear> getByColor(String color) {
-        return upperWearRepository.getTopsByColor(color);
+        return upperWearRepository.findByColor(color);
     }
 
     public List<UpperWear> getTopsByGenre(String genre) {
-        return upperWearRepository.getTopsByGenre(genre);
+        return upperWearRepository.findByGenre(genre);
     }
 }

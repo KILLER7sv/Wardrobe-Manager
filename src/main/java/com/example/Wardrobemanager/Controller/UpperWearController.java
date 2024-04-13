@@ -1,6 +1,5 @@
 package com.example.Wardrobemanager.Controller;
 
-import com.example.Wardrobemanager.Model.Bottom;
 import com.example.Wardrobemanager.Model.UpperWear;
 import com.example.Wardrobemanager.Service.UpperWearService;
 import com.example.Wardrobemanager.dto.RequestDto.AddTopRequestDto;
@@ -19,25 +18,24 @@ public class UpperWearController {
     UpperWearService upperWearService;
 
     @PostMapping("/add")
-    public ResponseEntity addUpperWear(@RequestBody AddTopRequestDto addTopRequestDto){
-        try{
+    public ResponseEntity<AddTopResponseDto> addUpperWear(@RequestBody AddTopRequestDto addTopRequestDto) {
+        try {
             AddTopResponseDto topResponse = upperWearService.addTop(addTopRequestDto);
-            return new ResponseEntity(topResponse, HttpStatus.CREATED);
-        }
-        catch (Exception e){
-            return new ResponseEntity(e.getMessage(), HttpStatus.BAD_REQUEST);
+            return new ResponseEntity<>(topResponse, HttpStatus.CREATED);
+        } catch (Exception e) {
+            AddTopResponseDto errorResponse = new AddTopResponseDto();
+            errorResponse.setMessage("Error occurred: " + e.getMessage());
+            return new ResponseEntity<>(errorResponse, HttpStatus.BAD_REQUEST);
         }
     }
 
     @GetMapping("/getByColor")
-    public List<UpperWear> getByColor(@RequestParam("color") String color){
-        List<UpperWear> tops = upperWearService.getByColor(color);
-        return tops;
+    public List<UpperWear> getByColor(@RequestParam("color") String color) {
+        return upperWearService.getByColor(color);
     }
 
     @GetMapping("/getByGenre")
-    public List<UpperWear> getByGenre(@RequestParam("Genre") String genre){
-        List<UpperWear> tops = upperWearService.getTopsByGenre(genre);
-        return tops;
+    public List<UpperWear> getByGenre(@RequestParam("Genre") String genre) {
+        return upperWearService.getTopsByGenre(genre);
     }
 }

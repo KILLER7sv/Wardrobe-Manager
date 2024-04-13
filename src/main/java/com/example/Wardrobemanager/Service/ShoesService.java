@@ -1,7 +1,6 @@
 package com.example.Wardrobemanager.Service;
 
 import com.example.Wardrobemanager.Model.Shoes;
-import com.example.Wardrobemanager.Model.UpperWear;
 import com.example.Wardrobemanager.Repository.ShoesRepository;
 import com.example.Wardrobemanager.dto.RequestDto.AddShoesRequestDto;
 import com.example.Wardrobemanager.dto.ResponseDto.AddShoesResponseDto;
@@ -28,16 +27,16 @@ public class ShoesService {
         AddShoesResponseDto addShoesResponseDto = new AddShoesResponseDto();
         addShoesResponseDto.setName(savedShoes.getName());
         addShoesResponseDto.setGenre(savedShoes.getGenre());
-        addShoesResponseDto.setMessage("Congrats! Your "+savedShoes.getName() + " is Added");
+        addShoesResponseDto.setMessage("Congrats! Your " + savedShoes.getName() + " is Added");
 
         return addShoesResponseDto;
     }
 
     public List<Shoes> getByColor(String color) {
-        return shoesRepository.getShoesByColor(color);
+        return shoesRepository.findByColor(color);
     }
 
     public List<Shoes> getShoesByGenre(String genre) {
-        return shoesRepository.getShoesByGenre(genre);
+        return shoesRepository.findByGenre(genre);
     }
 }
