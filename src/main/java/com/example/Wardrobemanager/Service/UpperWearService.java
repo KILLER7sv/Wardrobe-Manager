@@ -16,6 +16,9 @@ public class UpperWearService {
     UpperWearRepository upperWearRepository;
 
     public AddTopResponseDto addTop(AddTopRequestDto addTopRequestDto) {
+        if(addTopRequestDto.getUserId() == null){
+            throw new IllegalArgumentException("Please Login First !!");
+        }
         UpperWear upperWear = new UpperWear();
         upperWear.setName(addTopRequestDto.getName());
         upperWear.setGender(addTopRequestDto.getGender());
