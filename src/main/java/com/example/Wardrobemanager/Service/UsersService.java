@@ -9,6 +9,7 @@ import com.example.Wardrobemanager.dto.ResponseDto.LoginUserResponseDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.naming.AuthenticationException;
 import java.util.UUID;
 
 @Service
@@ -29,14 +30,14 @@ public class UsersService {
         return addUserResponseDto;
     }
 
-    public LoginUserResponseDto loginUser(LoginUserRequestDto loginUserRequestDto) {
+    public LoginUserResponseDto loginUser(LoginUserRequestDto loginUserRequestDto) throws AuthenticationException {
         Users user = usersRepository.findByUsername(loginUserRequestDto.getUsername());
         if (user != null && user.getPassword().equals(loginUserRequestDto.getPassword())) {
             LoginUserResponseDto userResponseDto = new LoginUserResponseDto();
             userResponseDto.setUserId(user.getUserId());
             return userResponseDto;
         } else {
-            throw new RuntimeException("Invalid username or password");
+            throw new AuthenticationException("Invalid username or password");
         }
     }
 }
