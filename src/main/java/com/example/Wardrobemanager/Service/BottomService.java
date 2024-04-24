@@ -1,7 +1,5 @@
 package com.example.Wardrobemanager.Service;
 
-import com.example.Wardrobemanager.Enum.Color;
-import com.example.Wardrobemanager.Enum.Genre;
 import com.example.Wardrobemanager.Model.Bottom;
 import com.example.Wardrobemanager.Repository.BottomRepository;
 import com.example.Wardrobemanager.dto.RequestDto.AddBottomRequestDto;
@@ -9,9 +7,7 @@ import com.example.Wardrobemanager.dto.ResponseDto.AddBottomResponseDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import com.example.Wardrobemanager.Repository.BottomRepository;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
@@ -28,13 +24,14 @@ public class BottomService {
         bottom.setGenre(addBottomRequestDto.getGenre());
         bottom.setColor_type(addBottomRequestDto.getColor_type());
         bottom.setUserId(addBottomRequestDto.getUserId());
+        bottom.setImageUrl(addBottomRequestDto.getImageUrl());
 
         Bottom savedBottom = bottomRepository.save(bottom);
 
         AddBottomResponseDto addBottomResponseDto = new AddBottomResponseDto();
         addBottomResponseDto.setName(addBottomRequestDto.getName());
         addBottomResponseDto.setGenre(savedBottom.getGenre());
-        addBottomResponseDto.setMessage("Congrats! Your "+savedBottom.getName() +" with ID : "+savedBottom.getId() + " is Added");
+        addBottomResponseDto.setMessage("Congrats! Your "+savedBottom.getName() +" with ID : "+savedBottom.getId() + " is Added with imageUrl :" +savedBottom.getImageUrl() );
 
         return addBottomResponseDto;
     }
