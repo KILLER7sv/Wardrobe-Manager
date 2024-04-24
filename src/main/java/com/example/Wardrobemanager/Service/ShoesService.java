@@ -23,6 +23,7 @@ public class ShoesService {
         shoes.setGender(addShoesRequestDto.getGender());
         shoes.setColor_type(addShoesRequestDto.getColor_type());
         shoes.setUserId(addShoesRequestDto.getUserId());
+        shoes.setImageUrl(addShoesRequestDto.getImageUrl());
 
         Shoes savedShoes = shoesRepository.save(shoes);
 

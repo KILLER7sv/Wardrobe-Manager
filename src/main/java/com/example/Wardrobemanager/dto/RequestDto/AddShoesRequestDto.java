@@ -19,4 +19,5 @@ public class AddShoesRequestDto {
     Gender gender;
     Genre genre;
     String userId;
+    String imageUrl;
 }

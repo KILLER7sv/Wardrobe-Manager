@@ -25,5 +25,5 @@ public class UpperWear {
     Gender gender;
     Color_type color_type;
     String userId;
-    String photoUrl;
+    String imageUrl;
 }

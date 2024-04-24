@@ -26,6 +26,7 @@ public class UpperWearService {
         upperWear.setColor_type(addTopRequestDto.getColor_type());
         upperWear.setGenre(addTopRequestDto.getGenre());
         upperWear.setUserId(addTopRequestDto.getUserId());
+        upperWear.setImageUrl(addTopRequestDto.getImageUrl());
 
         UpperWear savedUpperWear = upperWearRepository.save(upperWear);
 
