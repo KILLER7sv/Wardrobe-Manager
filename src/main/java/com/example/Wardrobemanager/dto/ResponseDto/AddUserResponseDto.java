@@ -10,4 +10,5 @@ import lombok.experimental.FieldDefaults;
 @Setter
 public class AddUserResponseDto {
     String userId;
+    String token;
 }

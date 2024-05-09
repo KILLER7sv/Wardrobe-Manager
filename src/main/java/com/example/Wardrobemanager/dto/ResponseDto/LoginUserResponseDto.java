@@ -9,5 +9,6 @@ import lombok.experimental.FieldDefaults;
 @Getter
 @Setter
 public class LoginUserResponseDto {
-    String userId;
+    private String userId;
+    private String token;
 }
