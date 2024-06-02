@@ -11,4 +11,6 @@ public interface ShoesRepository extends MongoRepository<Shoes, String> {
     List<Shoes> findByColor(String color);
 
     List<Shoes> findByGenre(String genre);
+
+    List<Shoes> findByUserId(String userId);
 }

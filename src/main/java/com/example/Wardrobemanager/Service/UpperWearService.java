@@ -49,4 +49,8 @@ public class UpperWearService {
         List<UpperWear> result = tops.stream().filter(e -> Objects.equals(e.getUserId(), userId)).toList();
         return result;
     }
+
+    public List<UpperWear> getAll(String userId) {
+        return upperWearRepository.findByUserId(userId);
+    }
 }

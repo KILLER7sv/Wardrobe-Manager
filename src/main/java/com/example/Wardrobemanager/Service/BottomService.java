@@ -57,4 +57,8 @@ public class BottomService {
     public int deleteByGenre(String genre) {
         return bottomRepository.deleteByGenre(genre);
     }
+
+    public List<Bottom> getAll(String userId) {
+        return bottomRepository.findByUserId(userId);
+    }
 }

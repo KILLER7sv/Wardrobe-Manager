@@ -17,6 +17,11 @@ public class UpperWearController {
     @Autowired
     UpperWearService upperWearService;
 
+    @GetMapping("")
+    public List<UpperWear> getAll(@RequestParam("userId") String userId) {
+        return upperWearService.getAll(userId);
+    }
+
     @PostMapping("/add")
     public ResponseEntity<AddTopResponseDto> addUpperWear(@RequestBody AddTopRequestDto addTopRequestDto) {
         try {

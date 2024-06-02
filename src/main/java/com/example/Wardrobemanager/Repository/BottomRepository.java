@@ -31,4 +31,6 @@ public interface BottomRepository extends MongoRepository<Bottom, String> {
     List<Bottom> findByGenre(String genre);
     int deleteByColor(String color);
     int deleteByGenre(String genre);
+
+    List<Bottom> findByUserId(String userId);
 }

@@ -1,6 +1,7 @@
 package com.example.Wardrobemanager.Controller;
 
 import com.example.Wardrobemanager.Model.Shoes;
+import com.example.Wardrobemanager.Model.UpperWear;
 import com.example.Wardrobemanager.Service.ShoesService;
 import com.example.Wardrobemanager.dto.RequestDto.AddShoesRequestDto;
 import com.example.Wardrobemanager.dto.ResponseDto.AddShoesResponseDto;
@@ -18,6 +19,10 @@ public class ShoesController {
     @Autowired
     ShoesService shoesService;
 
+    @GetMapping("")
+    public List<Shoes> getAll(@RequestParam("userId") String userId) {
+        return shoesService.getAll(userId);
+    }
     @PostMapping("/add")
     public ResponseEntity<AddShoesResponseDto> addShoes(@RequestBody AddShoesRequestDto addShoesRequestDto){
         try{

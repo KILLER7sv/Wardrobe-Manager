@@ -10,4 +10,6 @@ import java.util.List;
 public interface UpperWearRepository extends MongoRepository<UpperWear, String> {
     List<UpperWear> findByColor(String color);
     List<UpperWear> findByGenre(String genre);
+
+    List<UpperWear> findByUserId(String userId);
 }

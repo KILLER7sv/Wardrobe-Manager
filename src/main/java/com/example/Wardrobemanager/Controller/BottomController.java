@@ -1,6 +1,7 @@
 package com.example.Wardrobemanager.Controller;
 
 import com.example.Wardrobemanager.Model.Bottom;
+import com.example.Wardrobemanager.Model.UpperWear;
 import com.example.Wardrobemanager.Service.BottomService;
 import com.example.Wardrobemanager.dto.RequestDto.AddBottomRequestDto;
 import com.example.Wardrobemanager.dto.ResponseDto.AddBottomResponseDto;
@@ -18,6 +19,10 @@ public class BottomController {
     @Autowired
     BottomService bottomService;
 
+    @GetMapping("")
+    public List<Bottom> getAll(@RequestParam("userId") String userId) {
+        return bottomService.getAll(userId);
+    }
     @PostMapping("/add")
     public ResponseEntity<Object> addBottom(@RequestBody AddBottomRequestDto addBottomRequestDto){
         try {

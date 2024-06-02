@@ -15,6 +15,10 @@ public class ShoesService {
     @Autowired
     ShoesRepository shoesRepository;
 
+    public List<Shoes> getAll(String userId) {
+        return shoesRepository.findByUserId(userId);
+    }
+
     public AddShoesResponseDto addShoes(AddShoesRequestDto addShoesRequestDto) {
         Shoes shoes = new Shoes();
         shoes.setColor(addShoesRequestDto.getColor());
